@@ -1,0 +1,38 @@
+<form (ngSubmit)="submit()" 
+  *ngIf = "this.weather.clicked; else notClicked"
+  [ngStyle]="{ 'background-image': 'url()',
+  'background-repeat': 'no-repeat',
+  'background-size' : 'cover'
+  }">
+    <div *ngIf = "weather.initialized; else empty" class="display">
+      <div *ngIf = "weather.valid; else invalidCity">
+        <h2 style>{{weather.city}}</h2>
+        <img [src]="weather.icon"/>
+        <p>
+          Conditions: {{weather.conditions}}<br/>
+          Temperature: {{weather.temperature}} &deg;C<br/>
+        </p>
+      </div>
+      <ng-template #invalidCity>
+        <h2 style>Invalid city name, please try again!</h2>
+      </ng-template>
+    </div>
+    
+    <ng-template #empty>
+      <div class="display">
+        <h2 style>Please enter your desired city</h2>
+      </div>
+    </ng-template>
+
+    City:<br>
+    <input type="text" name="city" [(ngModel)]="city"><br>
+    <input *ngIf = "!this.weather.valid; else submitted" type="submit" value="Submit">
+    <ng-template #submitted>
+      <input type="submit" value="Edit">
+    </ng-template>
+</form>
+
+
+<ng-template #notClicked>
+  <div style="height: 250px;"></div>
+</ng-template>
