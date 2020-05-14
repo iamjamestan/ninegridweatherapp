@@ -1,13 +1,12 @@
-<form (ngSubmit)="submit()" 
-  *ngIf = "this.weather.clicked; else notClicked"
-  [ngStyle]="{ 'background-image': 'url()',
+<form (ngSubmit)="submit(); this.editButtonClicked = false" 
+  *ngIf = "this.clicked; else notClicked"
+  [ngStyle]="{ 'background-image': 'url(' + weather.icon + ')',
   'background-repeat': 'no-repeat',
   'background-size' : 'cover'
   }">
     <div *ngIf = "weather.initialized; else empty" class="display">
       <div *ngIf = "weather.valid; else invalidCity">
         <h2 style>{{weather.city}}</h2>
-        <img [src]="weather.icon"/>
         <p>
           Conditions: {{weather.conditions}}<br/>
           Temperature: {{weather.temperature}} &deg;C<br/>
@@ -24,15 +23,20 @@
       </div>
     </ng-template>
 
-    City:<br>
-    <input type="text" name="city" [(ngModel)]="city"><br>
-    <input *ngIf = "!this.weather.valid; else submitted" type="submit" value="Submit">
-    <ng-template #submitted>
-      <input type="submit" value="Edit">
+    <div *ngIf = "weather.valid && weather.initialized && !editButtonClicked; else editNotClicked">
+      <button type="button" class="btn btn-success btn-sm" (click) = "this.editButtonClicked = true">Edit</button>
+    </div>
+
+    <ng-template #editNotClicked>
+      <div class="form-group-sm" style="padding-left: 20px; padding-right: 20px">
+        <label for="inputCity">City:</label>
+        <input id="inputCity" class="form-control form-control-sm" type="text" name="city" [(ngModel)]="city">
+        <input type="submit" class="btn btn-success btn-sm" value="Submit">
+      </div>
     </ng-template>
 </form>
 
 
 <ng-template #notClicked>
-  <div style="height: 250px;"></div>
+  <div style="height: 260px;"></div>
 </ng-template>

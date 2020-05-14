@@ -1,12 +1,17 @@
 h2 {
     padding-top: 15px;
+    text-shadow:white 0px 0px 15px;
 }
 
 form {
-    height: 250px;
+    height: 260px;
 }
 
 .display {
     height: 150px;
     margin-bottom: 10px;
+}
+
+p {
+    text-shadow: white 0px 0px 15px;
 }
