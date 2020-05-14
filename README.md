@@ -14,6 +14,7 @@ Specifications :
 
 Bonus Specifications :
 If you’ve implemented all of the features above, well done to you! Now here are some bonus specifications for those who are up for a challenge!
+
 7. The weather data must be updated regularly - data displayed should be no more than 30 seconds old. This must not be done using a manual refresh button.
 8. Enable offline use - on refreshing the page, even when offline, the page shows the last obtained weather data. To implement this, use either HTML5 LocalStorage or IndexedDB (use the Angular IndexedDB wrapper if using this).
 
